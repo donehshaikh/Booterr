@@ -157,13 +157,14 @@ METHODS = {
 }
 
 def run_attack(method, target, port, dur, size, rep):
-    try:
-        if method in L4:
-            METHODS[method](target, int(port), float(dur), int(size), rep)
-        else:
-            METHODS[method](target, float(dur), int(size), rep)
-    except Exception as e:
-        rep(f"❌ {e}")
+try:
+    if method in L4:
+        METHODS[method](target, int(port), float(dur), int(size), rep)
+    # Only fix eror 
+    else:
+        METHODS[method](target, float(dur), int(size), rep)
+except Exception as e:
+    rep(f"❌ {e}")
 
 
 
